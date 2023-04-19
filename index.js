@@ -1,10 +1,15 @@
 console.log('hello world');
 import { createServer } from 'http';
 import {randomPercentGenerator} from './randomGenerator.js';
+import fs from 'fs'
+
+const home = fs.readFileSync('./index.html')
+
 
 const server = createServer((req, res)=>{
-  if(req.url === "/")
-  res.end("<h1>Home page</h1>")
+  if(req.url === "/"){
+ res.end(home)
+  }
 
   else if(req.url === "/about")
   res.end(`<h1>Your lucky number is ${randomPercentGenerator()}</h1>`)
